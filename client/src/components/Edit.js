@@ -16,9 +16,9 @@ class Edit extends Component {
         Axios.get(apiBaseUrl + this.props.match.params.id)
             .then((result) => {
                 this.setState({
-                    id: result.data.id,
-                    name: result.data.name,
-                    salary: result.data.salary
+                    id: result.data[0].id,
+                    name: result.data[0].name,
+                    salary: result.data[0].salary
                 })
                 console.log('set value');
             })
