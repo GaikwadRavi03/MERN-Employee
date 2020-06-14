@@ -21,6 +21,14 @@ class Show extends Component {
         });
     }
 
+    handleClearAll = () => {
+        axios.delete('http://localhost:3000/employee').then(() => {
+            console.log('clear all employees');
+        }).catch((err) => {
+            console.log(err);
+        })
+    };
+
     render() {
         const myData = this.state.myItemsState.map((v, i) => {
             return <Items data={v} key={i} />
@@ -40,6 +48,9 @@ class Show extends Component {
                         {myData}
                     </tbody>
                 </table>
+                <div className="text-center">
+                    <button className="btn btn-danger" onClick={this.handleClearAll} >Clear All</button>
+                </div>
             </div>
         )
     }

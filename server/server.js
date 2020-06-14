@@ -58,6 +58,14 @@ app.delete('/employee/:id', (req, res) => {
     })
 });
 
+app.delete('/employee', (req, res) => {
+    Employee.remove().then((result) => {
+        res.status(200).json(result)
+    }).catch((err) => {
+        res.status(400).json(err)
+    })
+});
+
 app.listen(3000, () => {
     console.log('listen port 3000');
 });
