@@ -1,25 +1,24 @@
 import React, { Component } from 'react'
 import Items from './Items'
 import axios from 'axios'
-var apiBaseUrl = 'http://localhost:3000/employee';
+const apiBaseUrl = 'http://localhost:3000/employee/'
 
 class Show extends Component {
+
     constructor(props) {
         super(props)
 
         this.state = {
-            myItemsState: []
+            myShowState: []
         }
     }
 
     componentDidMount() {
         axios.get(apiBaseUrl).then((result) => {
             this.setState({
-                myItemsState: result.data
+                myShowState: result.data
             })
-        }).catch((err) => {
-            console.log('err', err);
-        });
+        })
     }
 
     handleClearAll = () => {
@@ -31,15 +30,15 @@ class Show extends Component {
     };
 
     render() {
-        const myData = this.state.myItemsState.map((v, i) => {
-            return <Items data={v} key={i} />
-        });
+        const myData = this.state.myShowState.map((v, k) => {
+            return <Items data={v} key={k} />
+        })
         return (
             <div>
                 <table className="table table-striped">
                     <thead>
                         <tr>
-                            <th>Emp Id</th>
+                            <th>Emp id</th>
                             <th>Name</th>
                             <th>Salary</th>
                             <th>Action</th>
@@ -49,8 +48,10 @@ class Show extends Component {
                         {myData}
                     </tbody>
                 </table>
-                <div className="text-center">
-                    <button className="btn btn-danger" onClick={this.handleClearAll} >Clear All</button>
+                <div>
+                    <div className="text-center mt-3">
+                        <button onClick={this.handleClearAll} className="btn btn-danger">Clear All</button>
+                    </div>
                 </div>
             </div>
         )

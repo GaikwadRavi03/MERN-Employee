@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
-import Axios from 'axios'
-var apiBaseUrl = 'http://localhost:3000/employee/';
+import axios from 'axios'
+
+const apiBaseUrl = 'http://localhost:3000/employee/'
 
 class Edit extends Component {
+
     constructor(props) {
         super(props)
 
@@ -12,15 +14,17 @@ class Edit extends Component {
             salary: ''
         }
     }
+
     componentDidMount() {
-        Axios.get(apiBaseUrl + this.props.match.params.id)
+        axios.get(apiBaseUrl + this.props.match.params.id)
             .then((result) => {
                 this.setState({
                     id: result.data[0].id,
                     name: result.data[0].name,
                     salary: result.data[0].salary
                 })
-                console.log('set value');
+            }).catch((err) => {
+                console.log('set value two', err);
             })
     }
 
@@ -30,35 +34,37 @@ class Edit extends Component {
         })
     }
 
-    handleSubmit = (e) => {
-        e.preventDefault()
+    handleSubmit = e => {
+        e.preventDefault();
         const data = {
             name: this.state.name,
             salary: this.state.salary
         }
-        Axios.put(apiBaseUrl + this.props.match.params.id, data).then(() => {
+        axios.put(apiBaseUrl + this.props.match.params.id, data).then(() => {
             console.log('modified one data');
             this.setState({
                 name: '',
                 salary: ''
             })
+        }).catch((err) => {
+            console.log(err);
         })
     }
 
     render() {
         return (
-            <div >
+            <div>
                 <form onSubmit={this.handleSubmit}>
                     <div>
-                        <label >Name</label>
-                        <input onChange={this.handleInput} name="name" value={this.state.name} type="text" className="form-control" />
+                        <label>Name</label>
+                        <input name="name" value={this.state.name} onChange={this.handleInput} type="text" className="form-control" />
                     </div>
                     <div>
-                        <label >Salary</label>
-                        <input type="number" onChange={this.handleInput} value={this.state.salary} name="salary" className="form-control" />
+                        <label>Salary</label>
+                        <input name="salary" value={this.state.salary} onChange={this.handleInput} type="number" className="form-control" />
                     </div>
-                    <div className="text-center mt-3">
-                        <button className="btn btn-success">Edit</button>
+                    <div className="text-center my-3">
+                        <button className="btn btn-success" type="submit">Edit</button>
                     </div>
                 </form>
             </div>
