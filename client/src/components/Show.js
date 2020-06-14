@@ -30,10 +30,6 @@ class Show extends Component {
         })
     };
 
-    componentDidUpdate() {
-        this.render()
-    }
-
     render() {
         const myData = this.state.myItemsState.map((v, i) => {
             return <Items data={v} key={i} />
