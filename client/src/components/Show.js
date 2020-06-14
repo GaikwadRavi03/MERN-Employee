@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Items from './Items'
 import axios from 'axios'
+var apiBaseUrl = 'http://localhost:3000/employee';
 
 class Show extends Component {
     constructor(props) {
@@ -12,7 +13,7 @@ class Show extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:3000/employee').then((result) => {
+        axios.get(apiBaseUrl).then((result) => {
             this.setState({
                 myItemsState: result.data
             })
@@ -22,12 +23,16 @@ class Show extends Component {
     }
 
     handleClearAll = () => {
-        axios.delete('http://localhost:3000/employee').then(() => {
+        axios.delete(apiBaseUrl).then(() => {
             console.log('clear all employees');
         }).catch((err) => {
             console.log(err);
         })
     };
+
+    componentDidUpdate() {
+        this.render()
+    }
 
     render() {
         const myData = this.state.myItemsState.map((v, i) => {

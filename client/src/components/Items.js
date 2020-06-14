@@ -1,15 +1,21 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+var apiBaseUrl = 'http://localhost:3000/employee/';
 
 class Items extends Component {
 
     handleDelete = () => {
-        axios.delete('http://localhost:3000/employee/' + this.props.data.id).then(() => {
+        axios.delete(apiBaseUrl + this.props.data.id).then(() => {
             console.log('delete one employee data');
         }).catch((err) => {
             console.log(err);
         })
+    }
+
+    componentDidUpdate() {
+        this.render()
+        window.location.reload(false);
     }
 
     render() {

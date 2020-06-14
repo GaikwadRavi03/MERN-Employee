@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Axios from 'axios'
-
+var apiBaseUrl = 'http://localhost:3000/employee/';
 
 class Edit extends Component {
     constructor(props) {
@@ -13,7 +13,7 @@ class Edit extends Component {
         }
     }
     componentDidMount() {
-        Axios.get('http://localhost:3000/employee/' + this.props.match.params.id)
+        Axios.get(apiBaseUrl + this.props.match.params.id)
             .then((result) => {
                 this.setState({
                     id: result.data.id,
@@ -36,7 +36,7 @@ class Edit extends Component {
             name: this.state.name,
             salary: this.state.salary
         }
-        Axios.put('http://localhost:3000/employee/' + this.props.match.params.id, data).then(() => {
+        Axios.put(apiBaseUrl + this.props.match.params.id, data).then(() => {
             console.log('modified one data');
             this.setState({
                 name: '',

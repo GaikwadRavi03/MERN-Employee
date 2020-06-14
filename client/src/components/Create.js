@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 
+var apiBaseUrl = 'http://localhost:3000/employee';
+
+
 class Create extends Component {
     constructor(props) {
         super(props)
@@ -26,7 +29,7 @@ class Create extends Component {
             salary: this.state.salary
         }
 
-        axios.post('http://localhost:3000/employee', data).then(() => {
+        axios.post(apiBaseUrl, data).then(() => {
             console.log('add employee');
         }).catch((err) => {
             console.log('err', err);
