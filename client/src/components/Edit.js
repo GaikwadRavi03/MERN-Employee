@@ -46,6 +46,7 @@ class Edit extends Component {
                 name: '',
                 salary: ''
             })
+            this.props.history.push('/');
         }).catch((err) => {
             console.log(err);
         })
