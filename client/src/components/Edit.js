@@ -58,11 +58,11 @@ class Edit extends Component {
                 <form onSubmit={this.handleSubmit}>
                     <div>
                         <label>Name</label>
-                        <input name="name" value={this.state.name} onChange={this.handleInput} type="text" className="form-control" />
+                        <input name="name" required value={this.state.name} onChange={this.handleInput} type="text" className="form-control" />
                     </div>
                     <div>
                         <label>Salary</label>
-                        <input name="salary" value={this.state.salary} onChange={this.handleInput} type="number" className="form-control" />
+                        <input name="salary" required value={this.state.salary} onChange={this.handleInput} type="number" className="form-control" />
                     </div>
                     <div className="text-center my-3">
                         <button className="btn btn-success" type="submit">Edit</button>
